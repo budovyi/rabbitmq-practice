@@ -5,10 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
+@Deprecated
 public class Initialization {
 
-    @Bean
+  /*  @Bean
     @Primary
+
     MessageProducer messageProducer () {
         MessageProducer messageProducer = new MessageProducer();
         messageProducer.connection();
@@ -20,5 +22,5 @@ public class Initialization {
         MessageConsumer messageConsumer = new MessageConsumer();
         messageConsumer.connection();
         return messageConsumer;
-    }
+    }*/
 }

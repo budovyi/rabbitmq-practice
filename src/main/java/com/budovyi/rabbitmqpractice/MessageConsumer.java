@@ -7,8 +7,14 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
-import java.io.IOException;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.event.EventListener;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+@Configuration
 public class MessageConsumer {
 
     private static final String QUEUE_NAME = "vova-queue-practice";
@@ -16,8 +22,8 @@ public class MessageConsumer {
     /*public static void main(String[] args) throws Exception {
         new MessageConsumer().connection();
     }*/
-
-    void  connection () throws Exception {
+    @PostConstruct
+    void  connection () throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("185.172.129.14");
         factory.setUsername("guest");
