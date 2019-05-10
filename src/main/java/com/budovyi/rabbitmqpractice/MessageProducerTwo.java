@@ -9,16 +9,12 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 @Configuration
-public class MessageProducer {
+public class MessageProducerTwo {
 
-    private static final String QUEUE = "vova-queue-practice";
-
-/* public static void main(String[] args) {
-        MessageProducer.connection();
-    }*/
+    private static final String QUEUE = "vova-queue2-practice";
 
     @PostConstruct
-     void connection ()  {
+    void connection ()  {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("185.172.129.14");
         factory.setUsername("guest");
@@ -38,12 +34,11 @@ public class MessageProducer {
     }
 
     private void sendMessage(Channel channel) throws IOException {
-        channel.exchangeDeclare("vova-exchange2-practice", "direct");
+
         channel.queueDeclare(QUEUE, false, false, false, null);
-        channel.queueBind("vova-queue2-practice", "vova-exchange2-practice","");
 
         String message = "there is my message.";
-        channel.basicPublish("", QUEUE, null, message.getBytes());
+        channel.basicPublish("vova-exchange2-practice", QUEUE, null, message.getBytes());
     }
-}
 
+}

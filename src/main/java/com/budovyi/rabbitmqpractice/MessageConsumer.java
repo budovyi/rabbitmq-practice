@@ -8,7 +8,6 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.event.EventListener;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeoutException;
 @Configuration
 public class MessageConsumer {
 
-    private static final String QUEUE_NAME = "vova-queue-practice";
+    private static final String QUEUE_NAME = "vova-queue2-practice";
 
     /*public static void main(String[] args) throws Exception {
         new MessageConsumer().connection();
@@ -33,8 +32,10 @@ public class MessageConsumer {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        // in producer need to bind exchange witch queue
 
         Consumer consumer = new DefaultConsumer(channel) {
+
             @Override
             public void handleDelivery(
                     String consumerTag,
